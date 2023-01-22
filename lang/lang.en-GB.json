@@ -131,10 +131,6 @@
                 "color": "#00d844",
                 "fields": [
                     {
-                        "name": "Categories",
-                        "value": "{{CATEGORIES}}"
-                    },
-                    {
                         "name": "Statistics",
                         "value": ":link: **{{DOWNLOADS}}** Downloads\n:heart: **{{FOLLOWERS}}** Followers",
                         "inline": true
@@ -148,9 +144,15 @@
                         "name": "External Resources",
                         "value": "{{LINKS}}",
                         "inline": true
+                    },
+                    {
+                        "name": "Categories",
+                        "value": "{{CATEGORIES}}"
                     }
                 ],
-                "thumbnail": "{{ICON}}"
+                "thumbnail": {
+                    "url": "{{ICON}}"
+                }
             }
         },
         "validationEmbeds": {

@@ -7,6 +7,7 @@ import {EventData} from '../../models/internal-models.js';
 import {Project} from '../../modrinth/models/project.js';
 import {TeamMember} from '../../modrinth/models/team-member.js';
 import {Lang} from '../../services/index.js';
+import {InteractionUtils} from '../../utils/interaction-utils.js';
 import {Command, CommandDeferType} from '../index.js';
 
 
@@ -23,7 +24,7 @@ export class ProjectCommand implements Command {
         };
 
         const project: Project = await HTTP.create({
-                baseURL: `https://api.modrinth.com/v2`,
+                baseURL: `https://api.modrinth.com`,
                 debug: false,
                 resultType: 'json',
                 headers: {
@@ -31,7 +32,7 @@ export class ProjectCommand implements Command {
                     'user-agent': `Discord Modrinth Bot`
                 }
             }
-        ).get(`project/${args.option}`);
+        ).get(`v2/project/${args.option}`);
 
         const links = [];
 
@@ -42,21 +43,21 @@ export class ProjectCommand implements Command {
             links.push(`[:desktop: Source](${project.source_url})`);
         }
         if (project.discord_url) {
-            links.push(`[:speech_bubble: Discord](${project.discord_url})`);
+            links.push(`[:speech_balloon: Discord](${project.discord_url})`);
         }
         if (project.wiki_url) {
             links.push(`[:book: Wiki](${project.wiki_url})`);
         }
 
         const members: TeamMember[] = await HTTP.create({
-                baseURL: `https://api.modrinth.com/v2`,
+                baseURL: `https://api.modrinth.com`,
                 debug: false,
                 resultType: 'json',
                 headers: {
                     'content-type': 'application/json',
                     'user-agent': `Discord Modrinth Bot`
                 }
-        }).get(`project/${args.option}/members`);
+        }).get(`v2/project/${args.option}/members`);
 
         let embed: EmbedBuilder;
 
@@ -65,13 +66,13 @@ export class ProjectCommand implements Command {
             DESCRIPTION: project.description,
             DOWNLOADS: project.downloads.toString(),
             FOLLOWERS: project.followers.toString(),
-            MEMBERS: members.map(member => member.user.username).join(', '),
+            MEMBERS: members.map(member => member.user.username).join('\n'),
             LINKS: links.join('\n'),
             CATEGORIES: project.categories.join(', '),
             ICON: project.icon_url,
         });
 
-        await intr.reply({embeds: [embed]});
+        await InteractionUtils.send(intr, embed);
     }
 
 }

@@ -37,6 +37,7 @@ export const ChatCommandMetadata: {
         options: [
             {
                 ...Args.PROJECTS_OPTION,
+                required: true,
             }
         ]
     }

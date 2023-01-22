@@ -31,17 +31,5 @@ export class Args {
         description: Lang.getRef('argDescs.projectsOption', Language.Default),
         description_localizations: Lang.getRefLocalizationMap('argDescs.projectsOption'),
         type: ApplicationCommandOptionType.String,
-        choices: [
-            {
-                name: Lang.getRef('projectsOptions.tempad', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('projectsOptions.tempad'),
-                value: ProjectOptions.TEMPAD,
-            },
-            {
-                name: Lang.getRef('projectsOptions.chipped', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('projectsOptions.chipped'),
-                value: ProjectOptions.CHIPPED,
-            }
-        ]
     }
 }
