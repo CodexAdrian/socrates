@@ -26,30 +26,20 @@ export const ChatCommandMetadata: {
             },
         ],
     },
-    INFO: {
+    PROJECT: {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getRef('chatCommands.info', Language.Default),
-        name_localizations: Lang.getRefLocalizationMap('chatCommands.info'),
-        description: Lang.getRef('commandDescs.info', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('commandDescs.info'),
+        name: Lang.getRef('chatCommands.project', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.project'),
+        description: Lang.getRef('commandDescs.project', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.project'),
         dm_permission: true,
         default_member_permissions: undefined,
         options: [
             {
-                ...Args.INFO_OPTION,
-                required: true,
-            },
-        ],
-    },
-    TEST: {
-        type: ApplicationCommandType.ChatInput,
-        name: Lang.getRef('chatCommands.test', Language.Default),
-        name_localizations: Lang.getRefLocalizationMap('chatCommands.test'),
-        description: Lang.getRef('commandDescs.test', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('commandDescs.test'),
-        dm_permission: true,
-        default_member_permissions: undefined,
-    },
+                ...Args.PROJECTS_OPTION,
+            }
+        ]
+    }
 };
 
 export const MessageCommandMetadata: {

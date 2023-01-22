@@ -1,6 +1,7 @@
 import { APIApplicationCommandBasicOption, ApplicationCommandOptionType } from 'discord.js';
 
-import { HelpOption, InfoOption } from '../enums/index.js';
+import { HelpOption } from '../enums/index.js';
+import { ProjectOptions } from '../enums/project-options.js';
 import { Language } from '../models/enum-helpers/index.js';
 import { Lang } from '../services/index.js';
 
@@ -24,28 +25,23 @@ export class Args {
             },
         ],
     };
-    public static readonly INFO_OPTION: APIApplicationCommandBasicOption = {
+    public static readonly PROJECTS_OPTION: APIApplicationCommandBasicOption = {
         name: Lang.getRef('arguments.option', Language.Default),
         name_localizations: Lang.getRefLocalizationMap('arguments.option'),
-        description: Lang.getRef('argDescs.helpOption', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('argDescs.helpOption'),
+        description: Lang.getRef('argDescs.projectsOption', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('argDescs.projectsOption'),
         type: ApplicationCommandOptionType.String,
         choices: [
             {
-                name: Lang.getRef('infoOptions.about', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('infoOptions.about'),
-                value: InfoOption.ABOUT,
+                name: Lang.getRef('projectsOptions.tempad', Language.Default),
+                name_localizations: Lang.getRefLocalizationMap('projectsOptions.tempad'),
+                value: ProjectOptions.TEMPAD,
             },
             {
-                name: Lang.getRef('infoOptions.translate', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
-                value: InfoOption.TRANSLATE,
-            },
-            {
-                name: Lang.getRef('infoOptions.dev', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('infoOptions.dev'),
-                value: InfoOption.DEV,
-            },
-        ],
-    };
+                name: Lang.getRef('projectsOptions.chipped', Language.Default),
+                name_localizations: Lang.getRefLocalizationMap('projectsOptions.chipped'),
+                value: ProjectOptions.CHIPPED,
+            }
+        ]
+    }
 }

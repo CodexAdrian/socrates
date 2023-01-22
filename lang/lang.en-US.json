@@ -124,6 +124,35 @@
                         ]
                     }
                 ]
+            },
+            "project": {
+                "title": "{{TITLE}}",
+                "description": "{{DESCRIPTION}}",
+                "color": "#00d844",
+                "fields": [
+                    {
+                        "name": "Statistics",
+                        "value": ":link: **{{DOWNLOADS}}** Downloads\n:heart: **{{FOLLOWERS}}** Followers",
+                        "inline": true
+                    },
+                    {
+                        "name": "Project Members",
+                        "value": "{{MEMBERS}}",
+                        "inline": true
+                    },
+                    {
+                        "name": "External Resources",
+                        "value": "{{LINKS}}",
+                        "inline": true
+                    },
+                    {
+                        "name": "Categories",
+                        "value": "{{CATEGORIES}}"
+                    }
+                ],
+                "thumbnail": {
+                    "url": "{{ICON}}"
+                }
             }
         },
         "validationEmbeds": {
@@ -189,8 +218,8 @@
         },
         "chatCommands": {
             "help": "help",
-            "info": "info",
-            "test": "test"
+            "test": "test",
+            "project": "project"
         },
         "userCommands": {
             "viewDateJoined": "View Date Joined"
@@ -208,7 +237,8 @@
         },
         "argDescs": {
             "helpOption": "Option.",
-            "infoOption": "Option."
+            "infoOption": "Option.",
+            "projectsOption": "Option."
         },
         "fields": {
             "commands": "Commands",
@@ -269,6 +299,10 @@
             "about": "About",
             "translate": "Translate",
             "dev": "Dev"
+        },
+        "projectsOptions": {
+            "tempad": "Tempad",
+            "chipped": "Chipped"
         },
         "yesNo": {
             "yes": "Yes",

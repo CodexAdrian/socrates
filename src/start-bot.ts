@@ -57,8 +57,6 @@ async function start(): Promise<void> {
     let commands: Command[] = [
         // Chat Commands
         new HelpCommand(),
-        new InfoCommand(),
-        new TestCommand(),
 
         // Message Context Commands
         new ViewDateSent(),
