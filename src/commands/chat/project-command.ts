@@ -1,7 +1,6 @@
 import {HTTP} from '@rubybb/http';
 import {ChatInputCommandInteraction, EmbedBuilder, PermissionsString} from 'discord.js';
 
-import {ProjectOptions} from '../../enums/project-options.js';
 import {Language} from '../../models/enum-helpers/index.js';
 import {EventData} from '../../models/internal-models.js';
 import {Project} from '../../modrinth/models/project.js';
@@ -17,11 +16,7 @@ export class ProjectCommand implements Command {
     public requireClientPerms: PermissionsString[] = [];
 
     public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
-        let args = {
-            option: intr.options.getString(
-                Lang.getRef('arguments.option', Language.Default)
-            ) as ProjectOptions,
-        };
+        let args = intr.options.getString(Lang.getRef('arguments.option', Language.Default));
 
         const project: Project = await HTTP.create({
                 baseURL: `https://api.modrinth.com`,
@@ -32,7 +27,7 @@ export class ProjectCommand implements Command {
                     'user-agent': `Discord Modrinth Bot`
                 }
             }
-        ).get(`v2/project/${args.option}`);
+        ).get(`v2/project/${args}`);
 
         const links = [];
 
@@ -57,7 +52,7 @@ export class ProjectCommand implements Command {
                     'content-type': 'application/json',
                     'user-agent': `Discord Modrinth Bot`
                 }
-        }).get(`v2/project/${args.option}/members`);
+        }).get(`v2/project/${args}/members`);
 
         let embed: EmbedBuilder;
 
@@ -72,7 +67,9 @@ export class ProjectCommand implements Command {
             ICON: project.icon_url,
         });
 
-        await InteractionUtils.send(intr, embed);
+        await InteractionUtils.send(intr, {
+            embeds: [embed],
+        });
     }
 
 }
